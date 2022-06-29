@@ -4,7 +4,7 @@ import cv2
 
 net = jetson.inference.detectNet('ssd-mobilenet-v2', threshold = 0.5)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(f'v4l2src device=/dev/video0 io-mode=2 ! image/jpeg, width=(int)3840, height=(int)2160 !  nvjpegdec ! video/x-raw, format=I420 ! appsink', cv2.CAP_GSTREAMER)
 cap.set(3,640)
 cap.set(4,480)
 
@@ -24,6 +24,6 @@ while True:
 
 
 
-    img = jetson.utils.cudaToNumpy(imgCuda)
+    # img = jetson.utils.cudaToNumpy(imgCuda)
     cv2.imshow('image', img)
     cv2.waitKey(1)

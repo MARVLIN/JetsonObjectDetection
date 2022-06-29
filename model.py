@@ -38,7 +38,7 @@ class mnSSD():
 
 
 def main():
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0, cv2.CAP_V4L)
     cap.set(3, 640)
     cap.set(4, 480)
     myModel = mnSSD('ssd-mobilenet-v2', threshold=0.5)
